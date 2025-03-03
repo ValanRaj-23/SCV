@@ -3,13 +3,13 @@ module overlapping(	input clk,
 			input x,
 			output reg y);
  
-reg temp1, temp2, temp3;
-reg [1:0] present, next;
+reg temp1;
+reg [3:0] present, next;
 
-parameter [1:0] IDLE 	= 0,
-		S1	= 1,
-		S2	= 2,
-		S3	= 3;
+parameter [3:0] IDLE 	= 4'b0001,
+		S1	= 4'b0010,
+		S2	= 4'b0100,
+		S3	= 4'b1000;
 
 always@(posedge clk)
 begin
@@ -22,62 +22,58 @@ begin
 end
 
 always@(*)
-begin
-	if(!reset)
-	begin
-		y = 0;
-		temp1 = 0;
-		temp2 = 0;
-		temp3 = 0;
-	end
-	else
 	begin
 	    y = 0;
-	    temp1 = temp1;
-		temp2 = temp2;
-		temp3 = temp3;
-	    next = IDLE;
+	    next = present;
 		case(present)
 			IDLE	: begin
 					y = 0;
 					temp1 = x;
 					next = S1;
-					
 				end
 
 			S1	: begin
 					if(temp1 == x)
 					begin
-						temp2 = x;
+						temp1 = x;
 						next = S2;
 					end
 					else
+					begin
 						next = IDLE;
+					    	temp1 = 0;
+				    end
 				end
 
 			S2	: begin
-					if(temp2 == x)
+					if(temp1 == x)
 					begin
-						temp3 = x;
+					    	temp1 = x;						
 						next = S3;
 					end
 					else
+					begin
 						next = IDLE;
+					    	temp1 = 0;
+				    end
 				end
 			S3	: begin
 					y = 1'b1;
-					if(temp3 == x)
+					if(temp1 == x)
 					begin
-						temp3 = x;
+					    	temp1 = x;
 						next = S3;
 					end
 					else
+					begin
 						next = IDLE;
-				end
+					    	temp1 = 0;
+				    end				
+                   end
 
 		endcase
 	end
-end
+
 	
 
 endmodule
