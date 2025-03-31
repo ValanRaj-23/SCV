@@ -21,7 +21,7 @@ reg [2:0] wrptr, rdptr;
 	else if(wr_en && (!full))
 	begin
 		mem[wrptr] <= din;
-		wrptr <= wrptr + 1'b1;
+		wrptr <= wrptr + 1'b1; // write pointer
 	end
 	end
 	always@(posedge clk or posedge rst)begin
@@ -30,7 +30,7 @@ reg [2:0] wrptr, rdptr;
 	else if(rd_en && (!empty))
 	begin
 		dout <= mem[rdptr];
-		rdptr <= rdptr + 1'b1;
+		rdptr <= rdptr + 1'b1;// read poiner
 	end
 	end
 
