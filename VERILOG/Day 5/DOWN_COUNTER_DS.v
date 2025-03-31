@@ -8,7 +8,6 @@ module down_counter (input clk, rst,
 		begin
 			d <= d - 4'h1;
 		end
-
 	end
 	endmodule
 
