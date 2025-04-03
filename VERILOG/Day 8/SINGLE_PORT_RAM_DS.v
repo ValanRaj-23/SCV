@@ -1,7 +1,7 @@
-module ram(input clk, rst, en, wr,
-			input[3:0]data_in,
-			input[1:0]addr,
-			output reg [3:0] data_out);
+module ram(	input clk, rst, en, wr,
+		input[3:0]data_in,
+		input[1:0]addr,
+		output reg [3:0] data_out);
 
 reg [3:0] mem [3:0];
 
