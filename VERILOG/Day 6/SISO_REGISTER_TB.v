@@ -1,7 +1,7 @@
 module siso_tb;
 reg  clk, rst, en;
 reg s_in;
-  wire s_out;
+wire s_out;
 
 siso_ds uut( .clk(clk), .rst(rst), .en(en), .s_in(s_in), .s_out(s_out));
 
@@ -20,8 +20,8 @@ end
 
 initial begin
 	clk = 0;
-    rst = 1;
-    s_in = 0;
+    	rst = 1;
+    	s_in = 0;
 	en = 0;
 end
 
