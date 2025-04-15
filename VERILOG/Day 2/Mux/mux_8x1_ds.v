@@ -1,3 +1,4 @@
+//8x1 mux using two 4x1 mux
 module mux_4x1_ds(input [3:0]d,
                   input [1:0]sel,
                   output reg y);
